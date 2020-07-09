@@ -1,5 +1,15 @@
 const sequelize = require('./db');
-const Proyectos =require('./proyecto');
+const {Proyectos} = require('./proyectos')
+const {Tareas} = require('./tareas')
+const {Usuarios} = require('./usuarios')
+const {Roles} = require('./roles')
+const Intervencion = require('./intervecion')
+
+//Definimos las relaciones
+Usuarios.belongsToMany(Proyectos,{through:'participaciones'})
+Proyectos.hasMany(Tareas)
+Tareas.belongsToMany(Usuarios,{as:'interveciones', through: Intervencion})
+Usuario.hasOne(roles)
 sequelize
 .authenticate()
 .then(() =>{
@@ -12,5 +22,8 @@ console.error('Error conectando con la BD')
 
 module.exports = {
     sequelize,
-    Proyectos
+    Proyectos,
+    Tareas,
+    Usuarios,
+    Roles
 }
