@@ -1,15 +1,15 @@
 const sequelize = require('./db');
-const {Proyectos} = require('./proyectos')
-const {Tareas} = require('./tareas')
-const {Usuarios} = require('./usuarios')
-const {Roles} = require('./roles')
-const Intervencion = require('./intervecion')
+const Proyectos = require('./proyectos')
+const Tareas = require('./tareas')
+const Usuarios = require('./usuarios')
+const Roles = require('./roles')
+const Intervencion = require('./intervencion')
 
 //Definimos las relaciones
 Usuarios.belongsToMany(Proyectos,{through:'participaciones'})
 Proyectos.hasMany(Tareas)
-Tareas.belongsToMany(Usuarios,{as:'interveciones', through: Intervencion})
-Usuario.hasOne(roles)
+Tareas.belongsToMany(Usuarios,{as:'intervenciones', through: Intervencion})
+Usuarios.hasOne(Roles)
 sequelize
 .authenticate()
 .then(() =>{
