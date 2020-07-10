@@ -8,7 +8,9 @@ const Intervencion = require('./intervencion')
 //Definimos las relaciones
 Usuarios.belongsToMany(Proyectos,{through:'participaciones'})
 Proyectos.hasMany(Tareas)
+Tareas.belongsToMany(Usuarios,{through: 'asignaciones'})
 Tareas.belongsToMany(Usuarios,{as:'intervenciones', through: Intervencion})
+
 Usuarios.hasOne(Roles)
 sequelize
 .authenticate()

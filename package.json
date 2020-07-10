@@ -4,6 +4,7 @@
   "description": "gestor de proyectos y tareas",
   "main": "index.js",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mariadb": "^2.4.1",
     "sequelize": "^6.3.0"
