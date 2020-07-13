@@ -11,7 +11,9 @@ Proyectos.hasMany(Tareas)
 Tareas.belongsToMany(Usuarios,{through: 'asignaciones'})
 Tareas.belongsToMany(Usuarios,{as:'intervenciones', through: Intervencion})
 
-Usuarios.hasOne(Roles)
+Usuarios.belongsTo(Roles)
+Roles.hasMany(Roles,{as:'heredaros'})
+
 sequelize
 .authenticate()
 .then(() =>{

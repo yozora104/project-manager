@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session')
-const {login}=require('./controllers/autenticacion')
+const {login, controlAcceso} = require('./controllers/autenticacion')
 const {dashboard} = require('./controllers/dashboard')
 
 require('./models')
@@ -22,7 +22,6 @@ app.set('view engine','ejs')
 
 //definicion de las rutas
 app.get("/", controlAcceso("ver proyectos"), dashboard)
-app.get('/', dashboard)
 app.get("/login", (req, res) => res.render("login"))
 app.post("/login",login)
 
