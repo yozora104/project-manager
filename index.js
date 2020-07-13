@@ -22,16 +22,6 @@ app.set('view engine','ejs')
 
 //definicion de las rutas
 
-app.get('/login', (req, res) => res.render('login'))
-app.post('/login',login)
-
-
-
-
-
-
-
-
 app.get('/', dashboard)
 app.get("/login", (req, res) => res.render("login"))
 app.post("/login",login)
