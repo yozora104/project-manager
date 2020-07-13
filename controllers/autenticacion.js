@@ -1,8 +1,9 @@
 const { Usuarios } = require("../models");
+const md5 = require("md5");
 
 function login(req,res) {
     const {email, password}= req.body;
-    Usuarios.findOne({where: {email, password}})
+    Usuarios.findOne({where: {email, password: md5(password)}})
     .then(usuarios => {
         if (usuarios) {
         req.session.usuarios = usuarios;
@@ -13,8 +14,16 @@ function login(req,res) {
 }
 })
 }
+function controlAcceso(permiso) {
+    return function (req,res,next){
+        if (req.session.usuarios) next()
+        else res.redirect("/login")
+    }
+
+}
 
 
 module.exports= {
-    login
+    login,
+    controlAcceso
 }
