@@ -1,6 +1,5 @@
-const { Usuarios } = require("../models");
+const { Usuarios, Roles } = require("../models");
 const md5 = require("md5");
-const Roles = require("../models/roles");
 
 function login(req,res) {
     const {email, password}= req.body;
@@ -17,22 +16,22 @@ function login(req,res) {
 }
 function controlAcceso(permiso) {
     return function (req,res,next){
-        const usuario=req.session.usuario
+        const usuario=req.session.usuarios
         if (usuario) {
-            roles.findOne({where:{id:usuario.roleId}})
-            .then (roles=> {
-                if (roles.permisos.indexOf(permiso) !=-1) next()
-
-            }) else{res.status(403).send('Permiso denegado')}
-        } else{
-            res.redirect("/login")
+            Usuarios.findByPk(usuario.id, {
+                include: [Roles]
+              })
+              .then(usuario => {
+                if (usuario && usuario.role && usuario.role.permisos && usuario.role.permisos.indexOf(permiso) != -1) next()
+                else res.status(403).send("No está autorizado")
+              })
+            }
+            else res.redirect("/login")
+          }
         }
-        // if (req.session.usuarios) next()
-        // else res.redirect("/login")
-    }
-
-
-module.exports= {
-    login,
-    controlAcceso
-}
+        
+        
+        module.exports = {
+            login,
+            controlAcceso
+        }

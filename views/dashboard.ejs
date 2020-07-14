@@ -7,5 +7,22 @@
 </head>
 <body>
     <h1>Bienvenido, <%=usuario.nombre%></h1>
+    <table class="table">
+        <thead>
+            <th>Tarea</th>
+            <th>Inicio</th>
+            <th>Vencimiento</th>
+        </thead>
+        <tbody>
+<% for (var i=0; i<tareas.length; i++) {%>
+  <tr>
+      <td><%= tareas[i].nombre %></td>
+      <td><%= tareas[i].fechaini %></td>
+      <td><%= tareas[i].fechaVencimiento %></td>
+      
+  </tr>  
+<%} %>
+</tbody>
+</table>
 </body>
 </html>
