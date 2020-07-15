@@ -10,7 +10,9 @@ Usuarios.belongsToMany(Proyectos,{through:'participaciones'})
 Proyectos.hasMany(Tareas)
 Tareas.belongsToMany(Usuarios,{through: 'asignaciones'})
 Usuarios.belongsToMany(Tareas,{through:'asignaciones'})
-Tareas.belongsToMany(Usuarios,{as:'intervenciones', through: Intervencion})
+Tareas.hasMany(Intervencion, {as: 'intervenciones'})
+Intervencion.belongsTo(Usuarios)
+Intervencion.belongsTo(Tareas)
 
 Usuarios.belongsTo(Roles)
 Roles.hasMany(Roles,{as:'heredaros'})
@@ -30,5 +32,6 @@ module.exports = {
     Proyectos,
     Tareas,
     Usuarios,
-    Roles
+    Roles,
+    Intervencion
 }

@@ -2,7 +2,13 @@ const Sequelize = require('sequelize');
 const sequelize = require('./db');
 
 const Intervencion = sequelize.define('intervencion', {
-    inicio: {type: Sequelize.DATE, allowNull: false},
+    id:{
+        type:Sequelize.INTEGER, 
+        autoIncrement: true, 
+        primaryKey: true
+    },
+    inicio: {type: Sequelize.DATE, allowNull: false, defaultValue: sequelize.NOW},
     fin: {type: Sequelize.DATE, allowNull: true}
+   
 });
 module.exports = Intervencion;
