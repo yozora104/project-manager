@@ -48,11 +48,27 @@ function CrearProyecto(req, res) {
 
 
  }
-
+ function eliminarProyecto(req, res) {
+    Proyectos.findByPk(req.params.id)
+    .then(proyectos => {
+        if (proyectos) {
+            proyectos.destroy()
+            .then(() => {
+                res.status(200).json({})
+            })
+        } else {
+            res.status(404).json("Proyecto no encontrado")
+        }
+    })
+    .catch(err => {
+        res.status(400).json(err.message)
+    })
+}
 module.exports = {
     CrearProyecto,
     listarProyectos,
     leerProyectos,
-    modificarProyectos
+    modificarProyectos,
+    eliminarProyecto
     //añadir mas funciones a medida que se vayan haciendo
 }
