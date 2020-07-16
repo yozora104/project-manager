@@ -7,12 +7,14 @@ const {dashboard} = require('./controllers/dashboard')
 // require('./models')
 const {mostrarTarea} = require('./controllers/tareas')
 const {registrarAccionTarea}  = require('./controllers/tareas')
+const {CrearProyecto} = require('./api/proyectos')
 
 
 
 const app = express()
 // view engine setup
 app.use(express.urlencoded({extended: false}));
+app.use(express.json())
 app.use(cookieParser());
 app.use(cookieSession({
     name: 'cookiesession',
@@ -28,6 +30,7 @@ app.get("/login", (req, res) => res.render("login"))
 app.post("/login",login)
 app.get('/tareas/:id', mostrarTarea)
 app.post('/tareas/:id', registrarAccionTarea)
+app.post('/api/proyectos', CrearProyecto)
 
 
 app.listen(3000)
