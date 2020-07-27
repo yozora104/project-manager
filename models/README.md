@@ -1,1 +1,0 @@
-Este proyecto es una app de gestor de proyectos
