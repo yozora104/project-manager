@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "gestor de proyectos y tareas",
   "main": "index.js",
+  "scripts":{
+    "start":"node index.js",
+    "test": "echo \Error: no test specified\"
+    "jsdoc": "jsdoc -d docs"
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
