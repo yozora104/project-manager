@@ -8,6 +8,7 @@ const {dashboard} = require('./controllers/dashboard')
 const {mostrarTarea} = require('./controllers/tareas')
 const {registrarAccionTarea}  = require('./controllers/tareas')
 const {CrearProyecto,listarProyectos,leerProyectos, modificarProyectos,eliminarProyecto} = require('./api/proyectos')
+const { crearTarea, listarTareas,leerTarea, modificarTarea, eliminarTarea } = require('./api/tareas')
 
 
 const app = express()
@@ -34,6 +35,11 @@ app.get('/api/proyectos',listarProyectos)
 app.get('/api/proyectos/:id', leerProyectos)
 app.put('/api/proyectos/:id', modificarProyectos)
 app.delete('/api/proyectos/:id',eliminarProyecto)
+app.post('/api/tareas', crearTarea)
+app.get('/api/tareas/:id', leerTarea)
+app.get('/api/tareas',listarTareas)
+app.put('/api/tareas/:id', modificarTarea)
+app.delete('/api/tareas/:id',eliminarTarea)
 
 
 app.listen(3000)
