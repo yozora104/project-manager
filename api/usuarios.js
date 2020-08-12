@@ -1,7 +1,7 @@
-const { Usuario } = require("../models")
+const { Usuarios } = require("../models")
 
 function crearUsuario(req, res) {
-    Usuario.create(req.body)
+    Usuarios.create(req.body)
     .then(nuevoUsuario => {
         res.status(201).json(nuevoUsuario)
     })
@@ -13,7 +13,7 @@ function crearUsuario(req, res) {
 
 
 function listarUsuarios(req, res) {
-    Usuario.findAll()
+    Usuarios.findAll()
     .then(usuarios => {
         res.status(200).json(usuarios)
     })
@@ -23,7 +23,7 @@ function listarUsuarios(req, res) {
 }
 
 function leerUsuario(req, res) {
-    Usuario.findByPk(req.params.id, {
+    Usuarios.findByPk(req.params.id, {
         include: [{model:Usuario, as:'participantes'}, Usuario]
     })
     .then(usuario => {
@@ -36,7 +36,7 @@ function leerUsuario(req, res) {
 }
 
 function modificarUsuario(req, res) {
-    Usuario.findByPk(req.params.id)
+    Usuarios.findByPk(req.params.id)
     .then(usuario => {
         if (usuario) {
             Object.assign(usuario, req.body)
@@ -53,7 +53,7 @@ function modificarUsuario(req, res) {
 }
 
 function eliminarUsuario(req, res) {
-    Usuario.findByPk(req.params.id)
+    Usuarios.findByPk(req.params.id)
     .then(usuario => {
         if (usuario) {
             usuario.destroy()

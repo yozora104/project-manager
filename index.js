@@ -15,6 +15,7 @@ const {crearUsuario,
     leerUsuario,
     modificarUsuario,
     eliminarUsuario}= require('./api/usuarios')
+    const{listarRoles} = require('./api/roles')
 
 
 const app = express()
@@ -47,7 +48,8 @@ app.get('/api/tareas/:id', leerTarea)
 app.get('/api/tareas',listarTareas)
 app.put('/api/tareas/:id', modificarTarea)
 app.delete('/api/tareas/:id',eliminarTarea)
-app.get('api/usuarios/', listarUsuarios, leerUsuario)
+app.get('/api/usuarios', listarUsuarios)
+app.get('/api/roles', listarRoles)
 
 
 app.listen(3000)
