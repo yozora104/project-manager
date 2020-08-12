@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const cookieParser = require('cookie-parser')
+const cors =require('cors')
 const cookieSession = require('cookie-session')
 const {login, controlAcceso} = require('./controllers/autenticacion')
 const {dashboard} = require('./controllers/dashboard')
@@ -15,6 +16,7 @@ const app = express()
 // view engine setup
 app.use(express.urlencoded({extended: false}));
 app.use(express.json())
+app.use(cors())
 app.use(cookieParser());
 app.use(cookieSession({
     name: 'cookiesession',
